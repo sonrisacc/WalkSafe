@@ -1,6 +1,3 @@
-'use strict';
-/* eslint no-console: 0 */
-
 import React, { Component } from 'react';
 import Mapbox, { MapView } from 'react-native-mapbox-gl';
 import {
@@ -27,6 +24,7 @@ import locationIcon from './icons/Location';
 import alertIcon from './icons/Alert';
 import noViewIcon from './icons/NoView';
 import viewCrimes from './icons/ViewCrimes';
+
 
 const accessToken = MAPBOX_ACCESS_TOKEN;
 Mapbox.setAccessToken(accessToken);
@@ -106,7 +104,7 @@ export default class BaseMap extends Component {
 
   onPressSearchButton = () => {
     if (this.state.searchText.length > 0) {
-      axios.get(`${HOST}:${PORT}/api/map/geocode/forward`, {
+      axios.get(`${HOST}/api/map/geocode/forward`, {
         params: {
           address: this.state.searchText
         }
@@ -205,7 +203,7 @@ export default class BaseMap extends Component {
     // If selected marker is search and directions are not shown
     if (selectedPoint.id === 'search' && !this.state.showDirections) {
       // Retrieve walking directions from current location to searched location
-      axios.get(`${HOST}:${PORT}/api/map/directions`, {
+      axios.get(`${HOST}/api/map/directions`, {
         params: {
           start: `${this.state.userLocation.longitude},${this.state.userLocation.latitude}`,
           end: `${selectedPoint.longitude},${selectedPoint.latitude}`
@@ -290,8 +288,7 @@ export default class BaseMap extends Component {
 
   retrieveNearbyCrimes = () => {
       // Retrieve nearby crimes
-      axios.get(`${HOST}:${PORT}/api/map/crimes`, {
-        params: {
+      axios.get(`${HOST}/api/map/crimes`, {params: {
           lat: this.state.currentLocation.latitude,
           lon: this.state.currentLocation.longitude
         }
