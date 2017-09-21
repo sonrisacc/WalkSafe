@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 // import React, { Component } from 'react';
 // import { Text, View } from 'react-native';
 
@@ -13,7 +12,6 @@
 //       user: undefined, // user has not logged in yet
 //     };
 //   }
-
 //   render() {
 //     console.log('Landing page props', this.props);
 //     return (
@@ -26,7 +24,7 @@
 //   }
 // }
 // export default Landing;
->>>>>>> Update lunch screen
+ 
 import React, { Component } from 'react';
 import {
   AsyncStorage,

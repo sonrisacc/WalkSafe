@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { MAPBOX_ACCESS_TOKEN, HOST, PORT } from 'react-native-dotenv';
 import {
   AsyncStorage,
   Button,
@@ -10,22 +9,18 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import { HOST, PORT } from 'react-native-dotenv';
+import { LOCAL, HOST, PORT } from 'react-native-dotenv';
 import modalStyle from '../assets/styles/Modal.style';
 import style from '../assets/styles/Contacts.style';
 import axios from 'axios';
 import Modal from 'react-native-modal';
-
 
 import backArrow from '../components/icons/BackArrow';
 import Info from '../components/icons/Info';
 import Close from '../components/icons/Close';
 import Delete from '../components/icons/Delete';
 import Add from '../components/icons/Add';
-<<<<<<< HEAD
-
-=======
->>>>>>> Update lunch screen
+ 
 export default class ModalTester extends Component {
   state = {
     visibleModal: null,
@@ -48,6 +43,7 @@ export default class ModalTester extends Component {
           userId: userId
         });
         // Retrieve contacts
+
         axios.get(`${HOST}:${PORT}/api/user/contacts`, {
           params: {
             userId: this.state.userId
@@ -103,7 +99,7 @@ export default class ModalTester extends Component {
       user_id: this.state.userId,
       contact_name: removedContact[0].contact_name
     }
-    axios.delete(`${HOST}:${PORT}/api/user/contacts`, { params: data })
+    axios.delete(`https://fvcuhroajv.localtunnel.me/api/user/contacts`, { params: data })
       .then(res => {
         console.log(res);
       })
