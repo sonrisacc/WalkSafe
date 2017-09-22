@@ -12,6 +12,8 @@
 //       user: undefined, // user has not logged in yet
 //     };
 //   }
+
+
 //   render() {
 //     console.log('Landing page props', this.props);
 //     return (
@@ -24,7 +26,7 @@
 //   }
 // }
 // export default Landing;
- 
+
 import React, { Component } from 'react';
 import {
   AsyncStorage,

@@ -20,7 +20,7 @@ import Info from '../components/icons/Info';
 import Close from '../components/icons/Close';
 import Delete from '../components/icons/Delete';
 import Add from '../components/icons/Add';
- 
+
 export default class ModalTester extends Component {
   state = {
     visibleModal: null,
@@ -43,8 +43,7 @@ export default class ModalTester extends Component {
           userId: userId
         });
         // Retrieve contacts
-
-        axios.get(`${HOST}:${PORT}/api/user/contacts`, {
+        axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/contacts`, {
           params: {
             userId: this.state.userId
           }
@@ -69,7 +68,7 @@ export default class ModalTester extends Component {
   }
 
   _getContactLists = () => {
-    axios.get(`${HOST}:${PORT}/api/user/contacts`, {
+    axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/contacts`, {
       params: {
         userId: this.state.userId
       }

@@ -18,12 +18,9 @@ import AvatarStyles from '../assets/styles/Icons.styles';
 import Communications from 'react-native-communications';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-<<<<<<< HEAD
-=======
 import uberIcon from '../components/icons/Uber';
 import emergencyIcon from '../components/icons/Call911';
 
->>>>>>> Update tutorial.js
 const uiTheme = {
   fontFamily: 'Roboto',
   palette: {
@@ -70,8 +67,12 @@ export default class DrawerMenu extends Component {
         axios.get(`http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/user`, {
 =======
 
+<<<<<<< HEAD
         axios.get(`${HOST}:${PORT}/api/user/user`, {
 >>>>>>> Update tutorial.js
+=======
+        axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/user`, {
+>>>>>>> Update env for testing
           params: {
             userId: this.state.userId
           }
@@ -98,11 +99,22 @@ export default class DrawerMenu extends Component {
     AsyncStorage.multiRemove(['userToken', 'userId', 'userObject'])
       .then(() => {
         // Restarts the app and resets the states
-        RNRestart.Restart()
+        RNRestart.Restart();
       })
       .catch((err) => {
         console.error(err);
       })
+<<<<<<< HEAD
+=======
+    // axios.get(`https://gmrkewhbkk.localtunnel.me/api/auth/logout`)
+    //   .then(res => {
+    //     console.log('LOGOUT ENDPOINT: ', res);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
+
+>>>>>>> Update env for testing
   }
 
   openURLhandler() {

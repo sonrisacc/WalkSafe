@@ -25,7 +25,6 @@ import alertIcon from './icons/Alert';
 import noViewIcon from './icons/NoView';
 import viewCrimes from './icons/ViewCrimes';
 
-
 const accessToken = MAPBOX_ACCESS_TOKEN;
 Mapbox.setAccessToken(accessToken);
 
@@ -77,6 +76,7 @@ export default class BaseMap extends Component {
         });
         // Retrieve contacts
 <<<<<<< HEAD
+<<<<<<< HEAD
         axios.get(`http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/contacts`, {
           query: {
             userId: this.state.userId
@@ -85,6 +85,9 @@ export default class BaseMap extends Component {
 =======
         axios.get(`https://fvcuhroajv.localtunnel.me/api/user/contacts`)
 >>>>>>> Update tutorial.js
+=======
+        axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/contacts`)
+>>>>>>> Update env for testing
           .then(res => {
             console.log("RESPONSE", res.data);
             let contactNumberArr = [];
@@ -108,7 +111,7 @@ export default class BaseMap extends Component {
 
   onPressSearchButton = () => {
     if (this.state.searchText.length > 0) {
-      axios.get(`https://fvcuhroajv.localtunnel.me/api/map/geocode/forward`, {
+      axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/geocode/forward`, {
         params: {
           address: this.state.searchText
         }
@@ -207,7 +210,7 @@ export default class BaseMap extends Component {
     // If selected marker is search and directions are not shown
     if (selectedPoint.id === 'search' && !this.state.showDirections) {
       // Retrieve walking directions from current location to searched location
-      axios.get(`https://fvcuhroajv.localtunnel.me/api/map/directions`, {
+      axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/directions`, {
         params: {
           start: `${this.state.userLocation.longitude},${this.state.userLocation.latitude}`,
           end: `${selectedPoint.longitude},${selectedPoint.latitude}`
@@ -250,7 +253,7 @@ export default class BaseMap extends Component {
 
   onLongPress = (location) => {
     // Retrieve address of long pressed location
-    axios.get(`https://fvcuhroajv.localtunnel.me/api/map/geocode/reverse`, {
+    axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/geocode/reverse`, {
       params: {
         latitude: location.latitude,
         longitude: location.longitude
@@ -292,7 +295,7 @@ export default class BaseMap extends Component {
 
   retrieveNearbyCrimes = () => {
       // Retrieve nearby crimes
-      axios.get(`https://fvcuhroajv.localtunnel.me/api/map/crimes`, {params: {
+      axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/crimes`, {params: {
           lat: this.state.currentLocation.latitude,
           lon: this.state.currentLocation.longitude
         }
@@ -354,7 +357,7 @@ export default class BaseMap extends Component {
 
     if (this.state.showDirections) {
       // Retrieve address of current location
-      axios.get(`https://fvcuhroajv.localtunnel.me/api/map/geocode/reverse`, {
+      axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/geocode/reverse`, {
           params: {
             latitude: this.state.userLocation.latitude,
             longitude: this.state.userLocation.longitude
@@ -376,7 +379,7 @@ export default class BaseMap extends Component {
 
     } else {
       // Retrieve address of current location
-      axios.get(`https://fvcuhroajv.localtunnel.me/api/map/geocode/reverse`, {
+      axios.get(`https://gmrkewhbkk.localtunnel.me/api/map/geocode/reverse`, {
           params: {
             latitude: this.state.userLocation.latitude,
             longitude: this.state.userLocation.longitude

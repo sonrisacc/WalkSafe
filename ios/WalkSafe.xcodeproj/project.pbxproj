@@ -51,6 +51,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		94E160AAEF294657B2D69931 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB7787216AC4C77A864BBB4 /* libRCTRestart.a */; };
 		D975C61627444040914E9971 /* libSendSMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB2A6E24BB0B484BA4E8B6ED /* libSendSMS.a */; };
+		DB0421E2BB6448418F420D71 /* libRCTRestart.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DB9ABBD2024079ADC6E98B /* libRCTRestart.a */; };
 		E87D19531F5B6C2300B71C32 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87D19521F5B6C2300B71C32 /* Mapbox.framework */; };
 		E87D19541F5B6C2300B71C32 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E87D19521F5B6C2300B71C32 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E87D19571F5B6CDF00B71C32 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E87D194B1F5B6B6600B71C32 /* libRCTMapboxGL.a */; };
@@ -277,9 +278,9 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
-		E84DE7AE1F74DF5700211BB8 /* PBXContainerItemProxy */ = {
+		8A5892A61F74B48900AA16BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 4320915FB9264EFA8E65104C /* RCTRestart.xcodeproj */;
+			containerPortal = 1E7A4B434C6A476998789459 /* RCTRestart.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3245CDED1BFEE35C00EABF68;
 			remoteInfo = RCTRestart;
@@ -363,6 +364,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WalkSafe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WalkSafe/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1E7A4B434C6A476998789459 /* RCTRestart.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTRestart.xcodeproj; path = "../node_modules/react-native-restart/ios/RCTRestart.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* WalkSafe-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WalkSafe-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* WalkSafe-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WalkSafe-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33854EA11F6355FB00456A25 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		CB2A6E24BB0B484BA4E8B6ED /* libSendSMS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSendSMS.a; sourceTree = "<group>"; };
+		D3DB9ABBD2024079ADC6E98B /* libRCTRestart.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTRestart.a; sourceTree = "<group>"; };
 		E87D19451F5B6B6600B71C32 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		E87D194E1F5B6BF200B71C32 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		E87D19521F5B6C2300B71C32 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
@@ -427,7 +430,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				E87D19531F5B6C2300B71C32 /* Mapbox.framework in Frameworks */,
 				D975C61627444040914E9971 /* libSendSMS.a in Frameworks */,
+<<<<<<< HEAD
 				94E160AAEF294657B2D69931 /* libRCTRestart.a in Frameworks */,
+=======
+				DB0421E2BB6448418F420D71 /* libRCTRestart.a in Frameworks */,
+>>>>>>> Update env for testing
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +625,11 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F25E0A0C660448D9A9D84386 /* SendSMS.xcodeproj */,
+<<<<<<< HEAD
 				4320915FB9264EFA8E65104C /* RCTRestart.xcodeproj */,
+=======
+				1E7A4B434C6A476998789459 /* RCTRestart.xcodeproj */,
+>>>>>>> Update env for testing
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -659,10 +670,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		E84DE7AB1F74DF5700211BB8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				E84DE7AF1F74DF5700211BB8 /* libRCTRestart.a */,
+=======
+		8A5892951F74B48900AA16BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A5892A71F74B48900AA16BA /* libRCTRestart.a */,
+>>>>>>> Update env for testing
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -865,8 +883,13 @@
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
 				},
 				{
+<<<<<<< HEAD
 					ProductGroup = E84DE7AB1F74DF5700211BB8 /* Products */;
 					ProjectRef = 4320915FB9264EFA8E65104C /* RCTRestart.xcodeproj */;
+=======
+					ProductGroup = 8A5892951F74B48900AA16BA /* Products */;
+					ProjectRef = 1E7A4B434C6A476998789459 /* RCTRestart.xcodeproj */;
+>>>>>>> Update env for testing
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1100,11 +1123,19 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
 		E84DE7AF1F74DF5700211BB8 /* libRCTRestart.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTRestart.a;
 			remoteRef = E84DE7AE1F74DF5700211BB8 /* PBXContainerItemProxy */;
+=======
+		8A5892A71F74B48900AA16BA /* libRCTRestart.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTRestart.a;
+			remoteRef = 8A5892A61F74B48900AA16BA /* PBXContainerItemProxy */;
+>>>>>>> Update env for testing
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E87D193E1F5B5F9800B71C32 /* libthird-party.a */ = {
@@ -1349,7 +1380,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = FWEBF3S2DX;
+=======
+				DEVELOPMENT_TEAM = 7K9N65TPE5;
+>>>>>>> Update env for testing
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-restart/ios/RCTRestart/**",
