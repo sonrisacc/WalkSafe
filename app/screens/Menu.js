@@ -6,32 +6,34 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  View,
+  View
 } from 'react-native';
-
-import { HOST, PORT, LOCAL } from 'react-native-dotenv';
+import { HOST, PORT } from 'react-native-dotenv';
 import RNRestart from 'react-native-restart';
-import { COLOR, ThemeProvider, Toolbar, Drawer, Avatar } from 'react-native-material-ui';
+import {
+  COLOR,
+  ThemeProvider,
+  Toolbar,
+  Drawer,
+  Avatar
+} from 'react-native-material-ui';
 import Container from '../components/Container';
 import axios from 'axios';
 import AvatarStyles from '../assets/styles/Icons.styles';
 import Communications from 'react-native-communications';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import uberIcon from '../components/icons/Uber';
-import emergencyIcon from '../components/icons/Call911';
-
 const uiTheme = {
   fontFamily: 'Roboto',
   palette: {
     primaryColor: COLOR.cyan500,
-    accentColor: COLOR.pink500,
+    accentColor: COLOR.pink500
   },
   toolbar: {
     container: {
       height: 50,
-      paddingTop: 0,
-    },
+      paddingTop: 0
+    }
   },
   avatar: {
     container: {
@@ -52,7 +54,7 @@ export default class DrawerMenu extends Component {
 
   componentWillMount() {
     AsyncStorage.multiGet(['userToken', 'userId'])
-      .then((userData) => {
+      .then(userData => {
         let token = userData[0][1];
         let userId = userData[1][1];
 
@@ -63,20 +65,15 @@ export default class DrawerMenu extends Component {
           userId: userId
         });
         // Retrieve user
-<<<<<<< HEAD
-        axios.get(`http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/user`, {
-=======
-
-<<<<<<< HEAD
-        axios.get(`${HOST}:${PORT}/api/user/user`, {
->>>>>>> Update tutorial.js
-=======
-        axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/user`, {
->>>>>>> Update env for testing
-          params: {
-            userId: this.state.userId
-          }
-        })
+        axios
+          .get(
+            `http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/user`,
+            {
+              params: {
+                userId: this.state.userId
+              }
+            }
+          )
           .then(res => {
             this.setState({
               name: res.data[0].username,
@@ -88,12 +85,10 @@ export default class DrawerMenu extends Component {
             console.error(err);
           });
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
-
   }
-
 
   onLogout = () => {
     AsyncStorage.multiRemove(['userToken', 'userId', 'userObject'])
@@ -101,26 +96,14 @@ export default class DrawerMenu extends Component {
         // Restarts the app and resets the states
         RNRestart.Restart();
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
-      })
-<<<<<<< HEAD
-=======
-    // axios.get(`https://gmrkewhbkk.localtunnel.me/api/auth/logout`)
-    //   .then(res => {
-    //     console.log('LOGOUT ENDPOINT: ', res);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //   });
-
->>>>>>> Update env for testing
-  }
+      });
+  };
 
   openURLhandler() {
     Linking.openURL('uber://?action=setPickup');
   }
-
 
   render() {
     return (
@@ -137,15 +120,20 @@ export default class DrawerMenu extends Component {
               <Drawer.Header>
                 <Drawer.Header.Account
                   style={{
-                    container: { backgroundColor: '#fafafa' },
+                    container: { backgroundColor: '#fafafa' }
                   }}
-                  avatar={<Image style={AvatarStyles.profileImg} source={{uri: this.state.avatar}}/>}
+                  avatar={
+                    <Image
+                      style={AvatarStyles.profileImg}
+                      source={{ uri: this.state.avatar }}
+                    />
+                  }
                   footer={{
                     dense: true,
                     centerElement: {
-                        primaryText: this.state.name,
-                        secondaryText: this.state.email,
-                    },
+                      primaryText: this.state.name,
+                      secondaryText: this.state.email
+                    }
                   }}
                 />
               </Drawer.Header>
@@ -154,53 +142,60 @@ export default class DrawerMenu extends Component {
                 title="Actions"
                 items={[
                   {
-                    icon: 'directions-car', value: 'Order an Uber',
+                    icon: 'directions-car',
+                    value: 'Order an Uber',
                     active: this.state.active == 'Uber',
-                    onPress: () => { this.openURLhandler()},
-
+                    onPress: () => {
+                      this.openURLhandler();
+                    }
                   },
                   {
-                    icon: 'report', value: 'Call 911',
+                    icon: 'report',
+                    value: 'Call 911',
                     onPress: () => {
                       Communications.phonecall('+911', true);
-                    },
+                    }
                   },
                   {
-                    icon: 'people', value: 'Emergency Contacts',
+                    icon: 'people',
+                    value: 'Emergency Contacts',
                     active: this.state.active == 'Contacts',
                     onPress: () => {
                       //this.setState({ active: 'Contacts' });
                       this.props.navigation.navigate('Contacts');
-                    },
-                  },
+                    }
+                  }
                 ]}
               />
               <Drawer.Section
                 title="About"
                 items={[
                   {
-                    icon: 'slideshow', value: 'Tutorial',
+                    icon: 'slideshow',
+                    value: 'Tutorial',
                     active: this.state.active == 'Tutorial',
                     onPress: () => {
                       //this.setState({ active: 'Tutorial' });
                       this.props.navigation.navigate('Tutorial');
-                    },
+                    }
                   },
                   {
-                    icon: 'info', value: 'About',
+                    icon: 'info',
+                    value: 'About',
                     active: this.state.active == 'About',
                     onPress: () => {
                       //this.setState({ active: 'About' });
                       this.props.navigation.navigate('About');
-                    },
+                    }
                   },
                   {
-                    icon: 'input', value: 'Logout',
+                    icon: 'input',
+                    value: 'Logout',
                     //active: this.state.active == '',
                     onPress: () => {
                       this.onLogout();
-                    },
-                  },
+                    }
+                  }
                 ]}
               />
             </Drawer>
@@ -209,11 +204,11 @@ export default class DrawerMenu extends Component {
       </ThemeProvider>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-  },
+    backgroundColor: '#F5FCFF'
+  }
 });
