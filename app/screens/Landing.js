@@ -1,4 +1,3 @@
-
 // import React, { Component } from 'react';
 // import { Text, View } from 'react-native';
 
@@ -12,7 +11,6 @@
 //       user: undefined, // user has not logged in yet
 //     };
 //   }
-
 
 //   render() {
 //     console.log('Landing page props', this.props);
@@ -45,12 +43,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from '../components/buttons/Home';
 import styles from '../assets/styles/Landing.style';
 
-
 class Landing extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      user: undefined, // user has not logged in yet
+      user: undefined // user has not logged in yet
     };
 
     this.handleOpenURL = this.handleOpenURL.bind(this);
@@ -62,7 +59,7 @@ class Landing extends Component {
   componentWillMount() {
     // Check if user was already logged in
     AsyncStorage.getItem('userObjectStr')
-      .then((userObjectStr) => {
+      .then(userObjectStr => {
         console.log('Does this user string string exist', userObjectStr);
         if (userObjectStr) {
           let user = JSON.parse(userObjectStr);
@@ -73,7 +70,7 @@ class Landing extends Component {
           this.props.navigation.navigate('Home');
         }
       })
-      .catch((err) => {
+      .catch(err => {
         //Console an error if they weren't logged in
         console.error('User is not logged in yet', err);
       });
@@ -82,14 +79,12 @@ class Landing extends Component {
   componentDidMount() {
     Linking.addEventListener('url', this.handleOpenURL);
     // Launched from an external URL
-    Linking.getInitialURL().then((url) => {
+    Linking.getInitialURL().then(url => {
       if (url) {
         this.handleOpenURL({ url });
       }
     });
-
-  };
-
+  }
 
   componentWillUnmount() {
     // Remove event listener
@@ -113,32 +108,41 @@ class Landing extends Component {
     console.log('What is the userId', userId);
 
     // Scrub token data from url and remove first three characters
-    const userTokenUrlFirst = url.match(/token=([^#]+)(?=&user)/)[1].substring(3);
+    const userTokenUrlFirst = url
+      .match(/token=([^#]+)(?=&user)/)[1]
+      .substring(3);
     // Remove last three characters
-    const userTokenUrl = userTokenUrlFirst.substring(0, userTokenUrlFirst.length - 3);
+    const userTokenUrl = userTokenUrlFirst.substring(
+      0,
+      userTokenUrlFirst.length - 3
+    );
 
     // insert JWToken and userId into the AsycStorage
-    AsyncStorage.multiSet([['userToken', userTokenUrl], ['userId', userId], ['userObject', userObjectStr]])
+    AsyncStorage.multiSet([
+      ['userToken', userTokenUrl],
+      ['userId', userId],
+      ['userObject', userObjectStr]
+    ])
       .then(() => {
         this.setState({
           user: userObject
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('AsyncStorage error', err);
-      })
+      });
   }
 
   // Handle Login with Facebook button tap
   loginWithFacebook() {
     console.log('here is the FB URL:', FACEBOOK_URL);
-    this.openURLhandler(FACEBOOK_URL);
+    this.openURLhandler('http://127.0.0.1:3000/api/auth/google');
   }
 
   // Handle Login with Google button tap
   loginWithGoogle() {
     console.log('here is the Google URL:', GOOGLE_URL);
-    this.openURLhandler(GOOGLE_URL);
+    this.openURLhandler('http://127.0.0.1:3000/api/auth/google');
   }
 
   openURLhandler(url) {
@@ -154,57 +158,57 @@ class Landing extends Component {
         start={{ x: 1, y: 0 }}
         end={{ x: 0, y: 1 }}
       >
-        { user
-          ? // Show user info if already logged in
-            <View style={styles.content}>
-              <Text style={styles.header}>
-                Welcome {user.name}!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
-              </View>
-              <Home data={this.props} />
+        {user ? (
+          // Show user info if already logged in
+          <View style={styles.content}>
+            <Text style={styles.header}>Welcome {user.name}!</Text>
+            <View style={styles.avatar}>
+              <Image source={{ uri: user.avatar }} style={styles.avatarImage} />
             </View>
-          : // Show Please log in message if not
-            <View style={styles.content}>
-              <Text style={styles.header}>
-                Welcome Stranger!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={require('../assets/safetydance.png')} style={styles.avatarImage} />
-              </View>
-              <Text style={styles.text}>
-                Please log in to continue {'\n'}
-                to WalkSafe
-              </Text>
-              <View style={styles.buttons}>
-                <Icon.Button
-                  name="facebook"
-                  backgroundColor="#3b5998"
-                  onPress={this.loginWithFacebook}
-                  {...iconStyles}
-                >
-                  Login with Facebook
-                </Icon.Button>
-                <Icon.Button
-                  name="google"
-                  backgroundColor="#DD4B39"
-                  onPress={this.loginWithGoogle}
-                  {...iconStyles}
-                >
-                  Login with Google
-                </Icon.Button>
-              </View>
+            <Home data={this.props} />
+          </View>
+        ) : (
+          // Show Please log in message if not
+          <View style={styles.content}>
+            <Text style={styles.header}>Welcome Stranger!</Text>
+            <View style={styles.avatar}>
+              <Image
+                source={require('../assets/safetydance.png')}
+                style={styles.avatarImage}
+              />
             </View>
-          }
-        </LinearGradient>
+            <Text style={styles.text}>
+              Please log in to continue {'\n'}
+              to WalkSafe
+            </Text>
+            <View style={styles.buttons}>
+              <Icon.Button
+                name="facebook"
+                backgroundColor="#3b5998"
+                onPress={this.loginWithFacebook}
+                {...iconStyles}
+              >
+                Login with Facebook
+              </Icon.Button>
+              <Icon.Button
+                name="google"
+                backgroundColor="#DD4B39"
+                onPress={this.loginWithGoogle}
+                {...iconStyles}
+              >
+                Login with Google
+              </Icon.Button>
+            </View>
+          </View>
+        )}
+      </LinearGradient>
     );
   }
 }
 
 const iconStyles = {
   borderRadius: 10,
-  iconStyle: { paddingVertical: 5 },
+  iconStyle: { paddingVertical: 5 }
 };
 
 const colors = {

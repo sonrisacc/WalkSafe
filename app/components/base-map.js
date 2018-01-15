@@ -78,14 +78,11 @@ export default class BaseMap extends Component {
         });
         // Retrieve contacts
         axios
-          .get(
-            `http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/contacts`,
-            {
-              query: {
-                userId: this.state.userId
-              }
+          .get(`http://127.0.0.1:3000/api/user/contacts`, {
+            query: {
+              userId: this.state.userId
             }
-          )
+          })
           .then(res => {
             console.log('RESPONSE', res.data);
             let contactNumberArr = [];
@@ -369,14 +366,11 @@ export default class BaseMap extends Component {
         });
         // Retrieve contacts
         axios
-          .get(
-            `http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/contacts`,
-            {
-              query: {
-                userId: this.state.userId
-              }
+          .get(`http://127.0.0.1:3000/api/user/contacts`, {
+            query: {
+              userId: this.state.userId
             }
-          )
+          })
           .then(res => {
             let contactNumberArr = [];
             res.data.forEach(contact => {

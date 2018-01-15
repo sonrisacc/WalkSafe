@@ -66,14 +66,11 @@ export default class DrawerMenu extends Component {
         });
         // Retrieve user
         axios
-          .get(
-            `http://ec2-13-56-220-250.us-west-1.compute.amazonaws.com:3000/api/user/user`,
-            {
-              params: {
-                userId: this.state.userId
-              }
+          .get(`http://127.0.0.1:3000/api/user/user`, {
+            params: {
+              userId: this.state.userId
             }
-          )
+          })
           .then(res => {
             this.setState({
               name: res.data[0].username,

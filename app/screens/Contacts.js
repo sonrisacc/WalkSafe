@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import { LOCAL, HOST, PORT } from 'react-native-dotenv';
+import { HOST, PORT } from 'react-native-dotenv';
 import modalStyle from '../assets/styles/Modal.style';
 import style from '../assets/styles/Contacts.style';
 import axios from 'axios';
@@ -28,11 +28,12 @@ export default class ModalTester extends Component {
       contactName: '',
       contactNumber: ''
     },
-    contacts: [],
-  }
+    contacts: []
+  };
   componentWillMount() {
+    console.log('asdasd');
     AsyncStorage.multiGet(['userToken', 'userId'])
-      .then((userData) => {
+      .then(userData => {
         let token = userData[0][1];
         let userId = userData[1][1];
 
@@ -43,11 +44,12 @@ export default class ModalTester extends Component {
           userId: userId
         });
         // Retrieve contacts
-        axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/contacts`, {
-          params: {
-            userId: this.state.userId
-          }
-        })
+        axios
+          .get(`https://127.0.0.1:3000/api/user/contacts`, {
+            params: {
+              userId: this.state.userId
+            }
+          })
           .then(res => {
             this.setState({
               contacts: res.data
@@ -57,10 +59,9 @@ export default class ModalTester extends Component {
             console.error(err);
           });
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
-
   }
 
   componentDidMount() {
@@ -68,11 +69,12 @@ export default class ModalTester extends Component {
   }
 
   _getContactLists = () => {
-    axios.get(`https://gmrkewhbkk.localtunnel.me/api/user/contacts`, {
-      params: {
-        userId: this.state.userId
-      }
-    })
+    axios
+      .get(`https://127.0.0.1:3000/api/user/contacts`, {
+        params: {
+          userId: this.state.userId
+        }
+      })
       .then(res => {
         this.setState({
           contacts: res.data
@@ -81,13 +83,15 @@ export default class ModalTester extends Component {
       .catch(err => {
         console.error(err);
       });
-  }
+  };
 
-  _deleteContact = (id) => {
+  _deleteContact = id => {
     let contactIndex;
     let contactList = this.state.contacts;
     for (var i = 0; i < contactList.length; i++) {
-      if (contactList[i].id === id) { contactIndex = i }
+      if (contactList[i].id === id) {
+        contactIndex = i;
+      }
     }
     let removedContact = this.state.contacts.splice(contactIndex, 1);
     let newContactList = this.state.contacts;
@@ -97,54 +101,64 @@ export default class ModalTester extends Component {
     let data = {
       user_id: this.state.userId,
       contact_name: removedContact[0].contact_name
-    }
-    axios.delete(`https://fvcuhroajv.localtunnel.me/api/user/contacts`, { params: data })
+    };
+    axios
+      .delete(`https://127.0.0.1:3000/api/user/contacts`, {
+        params: data
+      })
       .then(res => {
         console.log(res);
       })
       .catch(console.error);
-  }
+  };
 
   _renderContacts = () => {
-    return this.state.contacts.map((contact) => {
-      return <View style={style.contactList} key={contact.id}>
-              <Text style={style.contactName}>{contact.contact_name}</Text>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={style.contactNumber}>+{contact.phone_number}</Text>
-                <View style={{borderLeftWidth: 1, paddingLeft: 10, marginLeft: 10}}>
-                  <Text onPress={ () => this._deleteContact(contact.id)}>{ Delete }</Text>
-                </View>
-              </View>
+    return this.state.contacts.map(contact => {
+      return (
+        <View style={style.contactList} key={contact.id}>
+          <Text style={style.contactName}>{contact.contact_name}</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={style.contactNumber}>+{contact.phone_number}</Text>
+            <View
+              style={{ borderLeftWidth: 1, paddingLeft: 10, marginLeft: 10 }}
+            >
+              <Text onPress={() => this._deleteContact(contact.id)}>
+                {Delete}
+              </Text>
             </View>
-    })
-  }
+          </View>
+        </View>
+      );
+    });
+  };
 
   _handleContactSubmit = () => {
     let newContact = this.state.newContact;
-    axios.post(`${HOST}:${PORT}/api/user/contacts`, {
-      contactName: this.state.newContact.contactName,
-      contactNumber: this.state.newContact.contactNumber,
-      userId: this.state.userId
-    })
+    axios
+      .post(`${HOST}:${PORT}/api/user/contacts`, {
+        contactName: this.state.newContact.contactName,
+        contactNumber: this.state.newContact.contactNumber,
+        userId: this.state.userId
+      })
       .then(res => {
         console.log(res);
         this._getContactLists();
       })
       .catch(console.error);
     this.setState({ visibleModal: null });
-  }
+  };
 
-  _setNameToState = (text) => {
+  _setNameToState = text => {
     let name = this.state.newContact;
     name.contactName = text;
-    this.setState({newContact: name});
-  }
+    this.setState({ newContact: name });
+  };
 
-  _setNumberToState = (text) => {
+  _setNumberToState = text => {
     let number = this.state.newContact;
     number.contactNumber = text;
-    this.setState({newContact: number});
-  }
+    this.setState({ newContact: number });
+  };
 
   _renderButton = (text, onPress) => (
     <TouchableOpacity onPress={onPress}>
@@ -152,52 +166,85 @@ export default class ModalTester extends Component {
         <Text style={modalStyle.buttonText}>{text}</Text>
       </View>
     </TouchableOpacity>
-  )
+  );
 
   _renderInfoModal = () => (
     <View style={modalStyle.modalContent}>
       <Text style={style.descriptionTitle}>Why do you need contacts?</Text>
-      <Text style={style.description}>Sometimes you need to keep the ones you care about updated of your location. Here you can create a list of contacts you want notified of your location so later you can notify them with just a press of a button.</Text>
-      {this._renderButton('Got it!', () => this.setState({ visibleModal: null }))}
+      <Text style={style.description}>
+        Sometimes you need to keep the ones you care about updated of your
+        location. Here you can create a list of contacts you want notified of
+        your location so later you can notify them with just a press of a
+        button.
+      </Text>
+      {this._renderButton('Got it!', () =>
+        this.setState({ visibleModal: null })
+      )}
     </View>
-  )
+  );
 
   _renderModalContent = () => (
     <View style={modalStyle.modalContent}>
       <View style={modalStyle.closeModal}>
-        <Text onPress={ () => this.setState({ visibleModal: null }) }>{ Close }</Text>
+        <Text onPress={() => this.setState({ visibleModal: null })}>
+          {Close}
+        </Text>
       </View>
       <Text style={style.descriptionTitle}>Please add a contact</Text>
       <TextInput
         placeholder="Name"
         maxLength={40}
-        onChangeText={(text) => this._setNameToState(text)}
+        onChangeText={text => this._setNameToState(text)}
         style={style.textInput}
       />
       <TextInput
         placeholder="Phonenumber"
         maxLength={11}
-        onChangeText={(text) => this._setNumberToState(text)}
+        onChangeText={text => this._setNumberToState(text)}
         style={style.textInput}
       />
       {this._renderButton('Add contact', () => this._handleContactSubmit())}
     </View>
-  )
+  );
 
-  render () {
+  render() {
     return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <View style={style.header}>
-          <Text style={style.headerText} onPress={ () => this.props.navigation.navigate('DrawerOpen')}>{ backArrow }</Text>
+          <Text
+            style={style.headerText}
+            onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          >
+            {backArrow}
+          </Text>
           <Text style={style.headerText}>My contacts</Text>
-          <Text style={style.headerText} onPress={ () => this.setState({ visibleModal: 1 })}>{ Info }</Text>
+          <Text
+            style={style.headerText}
+            onPress={() => this.setState({ visibleModal: 1 })}
+          >
+            {Info}
+          </Text>
         </View>
-        <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', marginTop: 40}}>
-          <View>
-            {this._renderContacts()}
-          </View>
-          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', marginTop: 30}}>
-            <Text onPress={ () => this.setState({ visibleModal: 4 }) }>{ Add }</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            marginTop: 40
+          }}
+        >
+          <View>{this._renderContacts()}</View>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              marginTop: 30
+            }}
+          >
+            <Text onPress={() => this.setState({ visibleModal: 4 })}>
+              {Add}
+            </Text>
           </View>
         </View>
         <Modal isVisible={this.state.visibleModal === 4}>
@@ -207,6 +254,6 @@ export default class ModalTester extends Component {
           {this._renderInfoModal()}
         </Modal>
       </View>
-    )
+    );
   }
 }
